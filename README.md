@@ -3,7 +3,7 @@ Based on LWRP
 
 ## References
 
-- Toon shader (not SRP)
+- Toon shader by Erik Roystan (not SRP)
   - https://github.com/IronWarrior/UnityToonShader 
 
 
