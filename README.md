@@ -1,4 +1,4 @@
-# unity-shader_subgraph
+# unity-shader-graph
 Based on LWRP
 
 ## References
