@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dissolve
-  m_Shader: {fileID: 4800000, guid: c0369a07e5fb6354b91454548263423a, type: 3}
-  m_ShaderKeywords: 
+  m_Name: dd
+  m_Shader: {fileID: 4800000, guid: f079d1a2afea5f94d8278ad3df2beef5, type: 3}
+  m_ShaderKeywords: _OCCLUSIONMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -18,8 +18,10 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
-    m_Floats:
-    - Vector1_9A6C5D45: 0.02
-    m_Colors:
-    - Color_C7F10865: {r: 0, g: 1.4074752, b: 15.813397, a: 0}
+    m_TexEnvs:
+    - _Textures:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors: []
