@@ -24,13 +24,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_8D5181A4: 0
     - _edgeSmoothness: 0.01
     - _firstEdge: 0.54
     - _highLightEdge: 0.6
     - _secondEdge: 0.05
     m_Colors:
-    - _colorTint: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
     - _firstColorTint: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0.3137255}
     - _highLightColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 0}
     - _secondColorTint: {r: 0.7764706, g: 0.7764706, b: 0.7764706, a: 0.28627452}

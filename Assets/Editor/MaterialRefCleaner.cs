@@ -7,10 +7,37 @@ public class MaterialRefCleaner : EditorWindow
     private SerializedObject serializedObject;
     private Material selectedMaterial;
 
-    [MenuItem("Tools/Optimization/MaterialRefCleaner", priority = 51)]
-    private static void Init()
+    [MenuItem("Tools/Optimization/Material/Ref Cleaner", priority = 51)]
+    private static void ShowWindow()
     {
-        GetWindow<MaterialRefCleaner>("Ref. Cleaner");
+        var window = GetWindow<MaterialRefCleaner>("MatRef. Cleaner");
+        window.Show();
+    }
+
+    [MenuItem("Tools/Optimization/Material/Clean all ref", priority = 52)]
+    private static void CleanAll()
+    {
+        foreach (var guid in AssetDatabase.FindAssets("t:Material"))
+        {
+            var path = AssetDatabase.GUIDToAssetPath(guid);
+            var material = AssetDatabase.LoadAssetAtPath<Material>(path);
+            var serializedObj = new SerializedObject(material);
+
+            var properties = new List<SerializedProperty>()
+            {
+                GetSerializedProperty(serializedObj, "m_SavedProperties.m_TexEnvs"),
+                GetSerializedProperty(serializedObj, "m_SavedProperties.m_Floats"),
+                GetSerializedProperty(serializedObj, "m_SavedProperties.m_Colors"),
+            };
+
+            foreach (var property in properties)
+            {
+                RemoveAllOldReference(material, serializedObj, property);
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
     }
 
     protected virtual void OnEnable()
@@ -41,9 +68,9 @@ public class MaterialRefCleaner : EditorWindow
         {
             var propertyMap = new Dictionary<string, SerializedProperty>()
             {
-                { "Textures", GetSerializedProperty("m_SavedProperties.m_TexEnvs") },
-                { "Floats", GetSerializedProperty("m_SavedProperties.m_Floats") },
-                { "Colors", GetSerializedProperty("m_SavedProperties.m_Colors") },
+                { "Textures", GetSerializedProperty(serializedObject, "m_SavedProperties.m_TexEnvs") },
+                { "Floats", GetSerializedProperty(serializedObject, "m_SavedProperties.m_Floats") },
+                { "Colors", GetSerializedProperty(serializedObject, "m_SavedProperties.m_Colors") },
             };
 
             EditorGUILayout.Space();
@@ -58,9 +85,9 @@ public class MaterialRefCleaner : EditorWindow
             GUI.backgroundColor = Color.red;
             if (GUILayout.Button("Remove all"))
             {
-                RemoveAllOldReference(propertyMap["Textures"]);
-                RemoveAllOldReference(propertyMap["Floats"]);
-                RemoveAllOldReference(propertyMap["Colors"]);
+                RemoveAllOldReference(selectedMaterial, serializedObject, propertyMap["Textures"]);
+                RemoveAllOldReference(selectedMaterial, serializedObject, propertyMap["Floats"]);
+                RemoveAllOldReference(selectedMaterial, serializedObject, propertyMap["Colors"]);
             }
 
             GUI.backgroundColor = Color.cyan;
@@ -100,9 +127,9 @@ public class MaterialRefCleaner : EditorWindow
         EditorGUIUtility.labelWidth = 0;
     }
 
-    private SerializedProperty GetSerializedProperty(string path)
+    private static SerializedProperty GetSerializedProperty(SerializedObject serializedObj, string path)
     {
-        return serializedObject.FindProperty(path);
+        return serializedObj.FindProperty(path);
     }
 
     private void ProcessProperties(SerializedProperty properties)
@@ -135,19 +162,19 @@ public class MaterialRefCleaner : EditorWindow
         }
     }
 
-    private void RemoveAllOldReference(SerializedProperty properties)
+    private static void RemoveAllOldReference(Material material, SerializedObject serializedObj, SerializedProperty property)
     {
-        if (properties != null && properties.isArray)
+        if (property != null && property.isArray)
         {
-            for (int i = 0; i < properties.arraySize; i++)
+            for (int i = 0; i < property.arraySize; i++)
             {
-                string name = properties.GetArrayElementAtIndex(i).displayName;
-                bool exist = selectedMaterial.HasProperty(name);
+                string name = property.GetArrayElementAtIndex(i).displayName;
+                bool exist = material.HasProperty(name);
 
                 if (exist == false)
                 {
-                    properties.DeleteArrayElementAtIndex(i);
-                    serializedObject.ApplyModifiedProperties();
+                    property.DeleteArrayElementAtIndex(i);
+                    serializedObj.ApplyModifiedProperties();
                     i--;
                 }
             }
