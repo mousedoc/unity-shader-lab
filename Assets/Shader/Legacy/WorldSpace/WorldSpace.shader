@@ -1,40 +1,43 @@
 ﻿Shader "Legacy/Example/World Space"
 {
     SubShader
-    {
-        Tags { "RenderType" = "Opaque" }
+    {        
+        Tags { "RenderType" = "Geometry" }
 
         Pass
         {
             CGPROGRAM
 
+            #include "UnityCG.cginc"
+            
             #pragma vertex vert
             #pragma fragment frag
+            
+            uniform float _Multiply;
 
-            #include "UnityCG.cginc"
 
-            struct appdata
+            struct VertexInput
             {
                 float4 vertex : POSITION;
             };
 
-            struct v2f
+            struct VertexOutput
             {
                 float4 vertex : SV_POSITION;
                 float3 worldPosition : TEXTCOORD0;
             };
 
-            v2f vert (appdata v)
+            VertexOutput vert (VertexInput input)
             {
-                v2f output;
-                output.vertex = UnityObjectToClipPos(v.vertex);
-                output.worldPosition = mul(unity_ObjectToWorld, v.vertex);
+                VertexOutput output;
+                output.vertex = UnityObjectToClipPos(input.vertex);
+                output.worldPosition = mul(unity_ObjectToWorld, input.vertex);
                 return output;
             }
 
-            fixed4 frag (v2f input) : SV_Target
+            fixed4 frag (VertexOutput input) : SV_Target
             {
-                return float4(input.worldPosition, 1);
+                return float4(input.worldPosition, 0);
             }
 
             ENDCG
