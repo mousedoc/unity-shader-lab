@@ -6,4 +6,4 @@ Legacy shaders, URP shaders
 Unity 2019.3 or higher
 
 ## References
-[Adrian Miasik/unity-shaders](https://github.com/adrian-miasik/unity-shaders)  
+- [Adrian Miasik/unity-shaders](https://github.com/adrian-miasik/unity-shaders)  
