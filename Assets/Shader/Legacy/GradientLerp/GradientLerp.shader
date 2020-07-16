@@ -4,6 +4,7 @@
     {
         _TopColor ("Top Color", Color) = (1,1,1,1)
         _BottomColor ("Bottom Color", Color) = (0,0,0,1)
+        _Offset ("Offset", Float) = 0
     }
 
     SubShader
@@ -21,6 +22,7 @@
 
             uniform half3 _TopColor;
             uniform half3 _BottomColor;
+            uniform half _Offset;
 
             struct VertexInput
             {
@@ -46,7 +48,7 @@
 
             fixed4 frag (VertexOutput input) : SV_Target
             {
-                half3 blend = lerp(_BottomColor, _TopColor, input.uv.y);
+                half3 blend = lerp(_BottomColor, _TopColor, input.uv.y + _Offset); 
                 return half4(blend, 1);
             }
 
