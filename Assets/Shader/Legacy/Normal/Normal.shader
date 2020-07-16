@@ -17,10 +17,9 @@
             
             #pragma vertex vert
             #pragma fragment frag
-            
+
             uniform float _Multiply;
-
-
+            
             struct VertexInput
             {
                 float4 vertex : POSITION;
@@ -33,11 +32,13 @@
                 float3 normal : NORMAL;
             };
 
+
             VertexOutput vert (VertexInput input)
             {
                 VertexOutput output;
                 output.vertex = UnityObjectToClipPos(input.vertex);
                 output.normal = input.normal;
+
                 return output;
             }
 

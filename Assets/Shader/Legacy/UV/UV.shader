@@ -13,7 +13,6 @@
             #pragma vertex vert
             #pragma fragment frag
 
-
             struct VertexInput
             {
                 float4 vertex : POSITION;
@@ -26,11 +25,13 @@
                 float2 uv : TEXCOORD0;
             };
 
+
             VertexOutput vert(VertexInput input)
             {
                 VertexOutput output;
                 output.vertex = UnityObjectToClipPos(input.vertex);
                 output.uv = input.uv;
+
                 return output;
             }
 
