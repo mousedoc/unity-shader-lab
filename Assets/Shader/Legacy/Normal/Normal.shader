@@ -18,18 +18,18 @@
             #pragma vertex vert
             #pragma fragment frag
 
-            uniform float _Multiply;
+            uniform half _Multiply;
             
             struct VertexInput
             {
                 float4 vertex : POSITION;
-                float3 normal : NORMAL;
+                half3 normal : NORMAL;
             };
 
             struct VertexOutput
             {
                 float4 vertex : SV_POSITION;
-                float3 normal : NORMAL;
+                half3 normal : NORMAL;
             };
 
 
@@ -44,8 +44,8 @@
 
             fixed4 frag (VertexOutput input) : SV_Target
             {
-                float3 normal = input.normal * _Multiply;
-                return float4(normal, 1);
+                half3 normal = input.normal * _Multiply;
+                return half4(normal, 1);
             }
 
             ENDCG

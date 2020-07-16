@@ -16,13 +16,13 @@
             struct VertexInput
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
+                half2 uv : TEXCOORD0;
             };
 
             struct VertexOutput
             {
                 float4 vertex : SV_POSITION;
-                float2 uv : TEXCOORD0;
+                half2 uv : TEXCOORD0;
             };
 
 
@@ -37,7 +37,7 @@
 
             fixed4 frag (VertexOutput input) : SV_Target
             {
-                return float4(input.uv.r, input.uv.g, 0, 1);
+                return half4(input.uv.r, input.uv.g, 0, 1);
             }
 
             ENDCG

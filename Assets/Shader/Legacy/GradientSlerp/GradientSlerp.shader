@@ -19,8 +19,8 @@
             #pragma vertex vert
             #pragma fragment frag
 
-            uniform float4 _TopColor;
-            uniform float4 _BottomColor;
+            uniform half3 _TopColor;
+            uniform half3 _BottomColor;
 
             struct VertexInput
             {
@@ -46,8 +46,8 @@
 
             fixed4 frag (VertexOutput input) : SV_Target
             {
-                float3 blend = lerp(_BottomColor, _TopColor, input.uv.y);
-                return float4(blend, 1);
+                half3 blend = lerp(_BottomColor, _TopColor, input.uv.y);
+                return half4(blend, 1);
             }
 
             ENDCG
