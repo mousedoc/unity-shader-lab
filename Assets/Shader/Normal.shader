@@ -1,4 +1,4 @@
-﻿Shader "Legacy/Example/Normal"
+﻿Shader "Example/Normal"
 {
     Properties
     {

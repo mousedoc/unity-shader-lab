@@ -1,4 +1,4 @@
-﻿Shader "Legacy/Example/World Space"
+﻿Shader "Example/World Space"
 {
     Properties
     {

@@ -1,4 +1,4 @@
-﻿Shader "Legacy/Example/Gradient"
+﻿Shader "Example/Gradient"
 {
     Properties
     {

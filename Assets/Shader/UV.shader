@@ -1,4 +1,4 @@
-﻿Shader "Legacy/Example/UV"
+﻿Shader "Example/UV"
 {
     SubShader
     {
