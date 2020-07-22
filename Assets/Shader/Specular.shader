@@ -1,53 +1,75 @@
-﻿Shader "Custom/Specular"
+﻿Shader "mousedoc/Example/Specular"
 {
     Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
+        _MainColor("Color", Color) = (1,1,1,1)
+        _AmbientLight("Ambient Light", Color) = (0.0,0.075,0.15, 1)
+        _Gloss("Gloss", float) = 1
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
-        LOD 200
 
-        CGPROGRAM
-        // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
-
-        // Use shader model 3.0 target, to get nicer looking lighting
-        #pragma target 3.0
-
-        sampler2D _MainTex;
-
-        struct Input
+        Pass
         {
-            float2 uv_MainTex;
-        };
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
 
-        half _Glossiness;
-        half _Metallic;
-        fixed4 _Color;
+            #include "UnityCG.cginc"
+            #include "Lighting.cginc"
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
-        UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
-        UNITY_INSTANCING_BUFFER_END(Props)
+            struct appdata
+            {
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+            };
 
-        void surf (Input IN, inout SurfaceOutputStandard o)
-        {
-            // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo = c.rgb;
-            // Metallic and smoothness come from slider variables
-            o.Metallic = _Metallic;
-            o.Smoothness = _Glossiness;
-            o.Alpha = c.a;
+            struct v2f
+            {
+                float4 vertex : SV_POSITION;
+                float3 normal : NORMAL;
+                float3 worldPosition : TEXCOORD0;
+            };
+
+            float4 _MainColor;
+            float4 _AmbientLight;
+            float _Gloss;
+
+            v2f vert (appdata v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.normal = v.normal;
+                o.worldPosition = mul(unity_ObjectToWorld, v.vertex);
+                return o;
+            }
+
+            fixed4 frag (v2f i) : SV_Target
+            {            
+                // General
+                float3 normal = normalize(i.normal);
+                float3 fragmentToCamera = _WorldSpaceCameraPos - i.worldPosition;
+                float3 viewDirection = normalize(fragmentToCamera);
+                
+                // Direct light
+                float3 lightSource = _WorldSpaceLightPos0.xyz;
+                float lightFalloff = max(0, dot(lightSource, normal)); // 0f to 1f                 
+                float3 directDiffuseLight = _LightColor0 * lightFalloff;
+               
+                // Phong
+                float3 viewReflect = reflect(-viewDirection, normal);
+                float specularFalloff = max(0,dot(viewReflect, lightSource));
+                specularFalloff = pow(specularFalloff, _Gloss); // Add gloss
+                float4 directSpecularLight = specularFalloff * _LightColor0;
+                
+                // Composite
+                float3 diffuseLight = _AmbientLight + directDiffuseLight;
+                float3 result = diffuseLight * _MainColor + directSpecularLight;
+                               
+                return float4(result, 1);
+            }
+            ENDCG
         }
-        ENDCG
     }
-    FallBack "Diffuse"
 }
