@@ -1,4 +1,4 @@
-﻿Shader "Example/UV"
+﻿Shader "mousedoc/Example/UV"
 {
     SubShader
     {

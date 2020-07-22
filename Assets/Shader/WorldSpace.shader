@@ -1,4 +1,4 @@
-﻿Shader "Example/World Space"
+﻿Shader "mousedoc/Example/World Space"
 {
     Properties
     {

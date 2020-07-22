@@ -1,4 +1,4 @@
-﻿Shader "Example/Normal"
+﻿Shader "mousedoc/Example/Normal"
 {
     Properties
     {

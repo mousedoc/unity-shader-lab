@@ -1,4 +1,4 @@
-﻿Shader "Example/Gradient"
+﻿Shader "mousedoc/Example/Gradient"
 {
     Properties
     {
