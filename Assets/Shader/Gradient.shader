@@ -1,10 +1,10 @@
-﻿Shader "Legacy/Example/GradientLerp"
+﻿Shader "Legacy/Example/Gradient"
 {
     Properties
     {
         _TopColor ("Top Color", Color) = (1,1,1,1)
         _BottomColor ("Bottom Color", Color) = (0,0,0,1)
-        _Offset ("Offset", Float) = 0
+        _Offset ("Top Offset", Float) = 0
     }
 
     SubShader
@@ -48,7 +48,8 @@
 
             fixed4 frag (VertexOutput input) : SV_Target
             {
-                half3 blend = lerp(_BottomColor, _TopColor, input.uv.y + _Offset); 
+                half t = smoothstep(_Offset, 1 - _Offset, input.uv.y);
+                half3 blend = lerp(_BottomColor, _TopColor, t); 
                 return half4(blend, 1);
             }
 
