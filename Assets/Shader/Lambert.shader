@@ -51,7 +51,7 @@
                 half lightFallOff = max(0, dot(lightSource, input.normal));
                 half3 directDiffUseLight = _LightColor0 * lightFallOff;
 
-                // Composite
+                // Add ambient
                 half3 diffUseLight = directDiffUseLight + _AmbientColor;
                 return float4(diffUseLight * _MainColor, 1);
             }
