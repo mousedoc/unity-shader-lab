@@ -1,75 +1,76 @@
 ﻿Shader "mousedoc/Example/Specular"
 {
-    Properties
-    {
-        _MainColor("Color", Color) = (1,1,1,1)
-        _AmbientLight("Ambient Light", Color) = (0.0,0.075,0.15, 1)
-        _Gloss("Gloss", float) = 1
-    }
-    SubShader
-    {
-        Tags { "RenderType"="Opaque" }
+	Properties
+	{
+		_MainColor("Color", Color) = (1, 1, 1, 1)
+		_AmbientColor("Ambient Color", Color) = (0, 0.075, 0.15, 1)
+		_Gloss("Gloss", float) = 1
+	}
 
-        Pass
-        {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
+	SubShader
+	{
+		Tags { "RenderType" = "Geometry" }
 
-            #include "UnityCG.cginc"
-            #include "Lighting.cginc"
+		Pass
+		{
+			CGPROGRAM
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
-            };
+			#include "UnityCG.cginc"
+			#include "Lighting.cginc"
 
-            struct v2f
-            {
-                float4 vertex : SV_POSITION;
-                float3 normal : NORMAL;
-                float3 worldPosition : TEXCOORD0;
-            };
+			#pragma vertex vert
+			#pragma fragment frag
 
-            float4 _MainColor;
-            float4 _AmbientLight;
-            float _Gloss;
+			uniform half4 _MainColor;
+			uniform half4 _AmbientColor;
+			uniform half _Gloss;
 
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.normal = v.normal;
-                o.worldPosition = mul(unity_ObjectToWorld, v.vertex);
-                return o;
-            }
+			struct VertexInput
+			{
+				float4 vertex : POSITION;
+				float3 normal : NORMAL;
+			};
 
-            fixed4 frag (v2f i) : SV_Target
-            {            
-                // General
-                float3 normal = normalize(i.normal);
-                float3 fragmentToCamera = _WorldSpaceCameraPos - i.worldPosition;
-                float3 viewDirection = normalize(fragmentToCamera);
-                
-                // Direct light
-                float3 lightSource = _WorldSpaceLightPos0.xyz;
-                float lightFalloff = max(0, dot(lightSource, normal)); // 0f to 1f                 
-                float3 directDiffuseLight = _LightColor0 * lightFalloff;
-               
-                // Phong
-                float3 viewReflect = reflect(-viewDirection, normal);
-                float specularFalloff = max(0,dot(viewReflect, lightSource));
-                specularFalloff = pow(specularFalloff, _Gloss); // Add gloss
-                float4 directSpecularLight = specularFalloff * _LightColor0;
-                
-                // Composite
-                float3 diffuseLight = _AmbientLight + directDiffuseLight;
-                float3 result = diffuseLight * _MainColor + directSpecularLight;
-                               
-                return float4(result, 1);
-            }
-            ENDCG
-        }
-    }
+			struct VertexOutput
+			{
+				float4 vertex : SV_POSITION;
+				float3 normal : NORAML;
+				float3 worldPosition : TEXCOORD0;
+			};
+
+			VertexOutput vert(VertexInput input) 
+			{
+				VertexOutput output;
+                output.vertex = UnityObjectToClipPos(input.vertex);
+				output.normal = input.normal;
+				output.worldPosition = mul(unity_ObjectToWorld, input.vertex);
+
+				return output;
+			}
+
+			fixed4 frag(VertexOutput input) : SV_Target
+			{
+				// Direction
+				half3 normal = normalize(input.normal);
+				half3 viewDirection = normalize(_WorldSpaceLightPos0.xyz - input.worldPosition);
+				half3 lightDirection = _WorldSpaceLightPos0.xyz;
+
+				// Diffuse
+				half lightFallOff = saturate(dot(lightDirection, input.normal));
+				half3 directDiffuseLight = _LightColor0 * lightFallOff + _AmbientColor;
+
+				// Specular
+				half3 viewReflect = reflect(-viewDirection, normal);
+				half specularFallOff = saturate(dot(viewReflect, lightDirection));
+				specularFallOff = pow(specularFallOff, _Gloss);
+				half4 directSpecularLight = specularFallOff * _LightColor0;
+
+				// Composite
+				half3 result = _MainColor * directDiffuseLight + directSpecularLight;
+				return half4(result, 1);
+			}
+
+			ENDCG
+		}
+	}
 }

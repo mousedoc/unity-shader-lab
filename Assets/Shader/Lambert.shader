@@ -47,8 +47,8 @@
             fixed4 frag(VertexOutput input) : SV_Target
             {
                 // Direct light 
-                half3 lightSource = _WorldSpaceLightPos0.xyz;
-                half lightFallOff = max(0, dot(lightSource, input.normal));
+                half3 lightDirection = _WorldSpaceLightPos0.xyz;
+                half lightFallOff = saturate(dot(lightDirection, input.normal));
                 half3 directDiffUseLight = _LightColor0 * lightFallOff;
 
                 // Add ambient
