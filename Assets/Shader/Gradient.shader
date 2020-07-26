@@ -4,7 +4,7 @@
     {
         _TopColor ("Top Color", Color) = (1,1,1,1)
         _BottomColor ("Bottom Color", Color) = (0,0,0,1)
-        _Offset ("Top Offset", Float) = 0
+        _Offset ("Offset", Float) = 0
     }
 
     SubShader
