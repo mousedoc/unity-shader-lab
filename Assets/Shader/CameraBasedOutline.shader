@@ -19,6 +19,7 @@
             "RenderType" = "Transparent" 
         }
 
+        // Outline
         Pass
         {
             Tags { "LightMode" = "UniversalForward" }
@@ -37,28 +38,38 @@
             struct VertexInput
             {
                 half4 vertex : POSITION;
-                half3 noraml : NORMAL;
+                half3 normal : NORMAL;
             };
 
             struct VertexOutput
             {
                 half4 vertex : SV_POSITION;
                 half3 normal : NORMAL;
-            }
+            };
+
+            uniform half4 _OutlineColor;
+            uniform half _OutlineWidth;
 
             VertexOutput vert (VertexInput input)
             {
                 VertexOutput output;
-                
+
                 VertexPositionInputs vertex = GetVertexPositionInputs(input.vertex.xyz);
-                output.vertex = vertex.positionCS;
-
-                VerexNoramlInputs normal = GetVertexNoramlInputs(input.normal);
-                output.normal = normal.nomalWS;
-
-                half distanceToCamera = distance(mul((half3x3)unity_ObjectToWorld, output.vertex.xyz), _WorldSpaceCameraPos);
-
+                output.vertex = vertex.positionCS; // clip space
+                
+                VertexNormalInputs normal = GetVertexNormalInputs(input.normal);
+                output.normal = normal.normalWS;
+                
+                float distanceToCamera = distance(mul((float3x3)unity_ObjectToWorld, output.vertex.xyz), _WorldSpaceCameraPos);
+                input.vertex.xyz += normalize(output.normal) * _OutlineWidth * 0.020 * distanceToCamera; // 0.020 = Magic 'feels-good' human number
+                output.vertex = TransformObjectToHClip(input.vertex.xyz);
+                
                 return output;
+            }
+
+            half4 frag(VertexOutput input) : SV_Target
+            {
+                return _OutlineColor;
             }
 
             ENDHLSL
