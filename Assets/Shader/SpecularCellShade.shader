@@ -3,7 +3,7 @@
     Properties
     {
         _MainColor("Color", Color) = (1, 1, 1, 1)
-        _LightStepFalloff("Light Step Falloff", Range(0, 1)) = 0.1
+        _LightStepFalloff("Light Step Falloff", Range(-1, 1)) = 0.1
         _AmbientColor("Ambient Color", Color) = (0, 0.075, 0.15, 1)
         _Gloss("Gloss", float) = 1
         _GlossStepFalloff("Gloss Step Falloff", Range(0, 1)) = 0.1
@@ -59,8 +59,10 @@
                 half3 viewDirection = normalize(_WorldSpaceCameraPos - input.worldPosition);
                 half3 lightDirection = _WorldSpaceLightPos0.xyz;
 
-                // Diffuse 
-                half lightFalloff = saturate(dot(lightDirection, normal));
+                // Diffuse  
+                half3 vec = dot(lightDirection, normal);
+                //half lightFalloff = saturate(dot(lightDirection, normal));            // if wanna light side only
+                half lightFalloff = dot(lightDirection, normal);
                 lightFalloff = step(_LightStepFalloff, lightFalloff);
                 half3 directDiffuseLight = _LightColor0 * lightFalloff;
                 half3 diffuseLight = _AmbientColor + directDiffuseLight;
