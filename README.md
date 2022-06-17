@@ -1,6 +1,5 @@
-# unity-shader-graph
-
-Legacy shaders, URP shaders
+# unity-shader-lab
+Unity built-in shader(Shaderlab) example
 
 ## Requirements
 Using Unity 2020.3.29f1
