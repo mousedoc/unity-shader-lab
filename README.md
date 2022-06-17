@@ -3,7 +3,7 @@
 Legacy shaders, URP shaders
 
 ## Requirements
-Unity 2019.3 or higher
+Using Unity 2020.3.29f1
 
 ## References
 - [Adrian Miasik/unity-shaders](https://github.com/adrian-miasik/unity-shaders)  
