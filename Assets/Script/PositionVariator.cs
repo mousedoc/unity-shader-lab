@@ -1,39 +1,43 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PositionVariator : MonoBehaviour
 {
     [SerializeField]
-    private bool byLocal = true;
-    [SerializeField]
     private float speed = 3f;
+
     [SerializeField]
-    private float offset = 0.5f;
+    private float range = 0.5f;
 
     [SerializeField]
     private bool x = true;
+
     [SerializeField]
     private bool y = true;
+
     [SerializeField]
     private bool z = true;
+
+    private Transform tr;
+    private Vector3 originPosition;
+
+    private void Awake()
+    {
+        tr = transform;
+        originPosition = tr.localPosition;
+    }
 
     private void Update()
     {
         var time = Time.time;
-        var position = byLocal ? transform.localPosition : transform.position;
+        var offset = new Vector3();
 
-        if(x)
-            position.x = Mathf.Sin(time * speed) * offset;
-        if(y)
-            position.y = Mathf.Cos(time * speed) * offset;
-        if(z)
-            position.z = Mathf.Cos(time * speed) * offset;
+        if (x)
+            offset.x = Mathf.Sin(time * speed) * range;
+        if (y)
+            offset.y = Mathf.Cos(time * speed) * range;
+        if (z)
+            offset.z = Mathf.Cos(time * speed) * range;
 
-        if(byLocal)
-            transform.localPosition = position;
-        else
-            transform.position = position;
+        transform.localPosition = originPosition + offset;
     }
 }

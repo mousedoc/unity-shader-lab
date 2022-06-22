@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MaterialFloatVariator : MonoBehaviour
 {
@@ -13,10 +10,18 @@ public class MaterialFloatVariator : MonoBehaviour
 
     [SerializeField]
     private float minimum = -1f;
+
     [SerializeField]
     private float maximum = 1f;
+
     [SerializeField]
     private float speed = 1f;
+
+    private void Awake()
+    {
+        if (targetMaterial == null)
+            targetMaterial = GetComponent<Material>();
+    }
 
     private void Update()
     {

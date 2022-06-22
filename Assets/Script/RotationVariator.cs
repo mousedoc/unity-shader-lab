@@ -1,39 +1,46 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RotationVariator : MonoBehaviour
 {
     [SerializeField]
     private bool byLocal = true;
+
     [SerializeField]
     private float speed = 2f;
+
     [SerializeField]
-    private float offset = 0.5f;
+    private float range = 0.5f;
 
     [SerializeField]
     private bool x = true;
+
     [SerializeField]
     private bool y = true;
+
     [SerializeField]
     private bool z = true;
+
+    private Transform tr;
+    private Quaternion originRotation;
+
+    private void Awake()
+    {
+        tr = transform;
+        originRotation = tr.localRotation;
+    }
 
     private void Update()
     {
         var time = Time.time;
-        var rotation = byLocal ? transform.localRotation : transform.rotation;
+        var offset = new Vector3();
 
-        if(x)
-            rotation.x = Mathf.Sin(time * speed) * offset;
-        if(y)
-            rotation.y = Mathf.Cos(time * speed) * offset;
-        if(z)
-            rotation.z = Mathf.Cos(time * speed) * offset;
+        if (x)
+            offset.x = Mathf.Sin(time * speed) * range;
+        if (y)
+            offset.y = Mathf.Cos(time * speed) * range;
+        if (z)
+            offset.z = Mathf.Cos(time * speed) * range;
 
-        if(byLocal)
-            transform.localRotation = rotation;
-        else
-            transform.rotation = rotation;
+        transform.localRotation = originRotation * Quaternion.Euler(offset);
     }
 }

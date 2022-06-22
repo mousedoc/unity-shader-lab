@@ -2,55 +2,47 @@
 {
     SubShader
     {
-        Tags { "RenderType" = "Geometry" }
-
         Pass
         {
+            Tags { "RenderType" = "Opaque" }
+
             CGPROGRAM
-
-            #include "UnityCG.cginc"
-
+            
             #pragma vertex vert
             #pragma fragment frag
 
-            sampler2D _CameraDepthTexture;
-
-            struct VertexInput
+            #include "UnityCG.cginc"
+            
+            struct appdata
             {
-                half4 vertex : POSITION;
+                float4 vertex : POSITION;
+                float4 texcoord : TEXCOORD0;
             };
 
-            struct VertexOutput
+            struct v2f
             {
-                half4 vertex : SV_POSITION;
-                half4 screenPos : TEXCOORD0;
+                float4 vertex : POSITION;
+                float depth : DEPTH;
             };
 
-            VertexOutput vert(VertexInput input) 
+            v2f vert (appdata v)
             {
-                VertexOutput output;
-                output.vertex = UnityObjectToClipPos(input.vertex);
-                output.screenPos = ComputeScreenPos(output.vertex);
-                //COMPUTE_EYEDEPTH(output.screenPos.z);
-
-                return output;
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.depth = -UnityObjectToViewPos(v.vertex).z;
+                return o;
             }
 
-            fixed4 frag(VertexOutput input) : SV_Target
+            fixed4 frag (v2f i) : SV_Target
             {
-                //sampler2D sampler_CameraDepthTexture;
-                //half depth = LinearEyeDepth (_CameraDepthTexture.Sample (sampler_CameraDepthTexture, input.screenPos.xy / input.screenPos.w).r);
+                // If the camera's far clipping plane is large, the difference may not be noticeable.
+                float depth = i.depth;
+                depth  = 1 - (depth / _ProjectionParams.z);
 
-
-
-
-              half sceneZ = LinearEyeDepth (SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(input.screenPos)));
-              half depth = sceneZ - input.screenPos.z;
-
-              return half4(depth.xxx, 1);
+                return float4(depth.xxx, 1);
             }
-             
             ENDCG
         }
     }
 }
+
