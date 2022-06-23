@@ -1,28 +1,32 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "mousedoc/Example/ScreenSpaceOutline"
+﻿Shader "mousedoc/Example/ScreenSpaceOutline"
 {
     Properties
     {
         _MainTex("Main Texture",2D)="white"{}
+        _OutlineColor("Outline Color", Color) = (0.5, 0.5, 0.5, 1)
+        _OutlineIteration("Outline Width", Range(0, 16)) = 8
     }
+
     SubShader
     {
-    Blend SrcAlpha OneMinusSrcAlpha
+        Blend SrcAlpha OneMinusSrcAlpha
+        
         Pass
         {
             CGPROGRAM
- 
+  
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
             sampler2D _MainTex;
  
             //_TexelSize is a float2 that says how much screen space a texel occupies.
             float2 _MainTex_TexelSize;
- 
-            #pragma vertex vert
-            #pragma fragment frag
-            #include "UnityCG.cginc"
+
+            float4 _OutlineColor;
+            int _OutlineIteration;
  
             struct v2f
             {
@@ -44,10 +48,7 @@ Shader "mousedoc/Example/ScreenSpaceOutline"
             }
  
             half4 frag(v2f i) : COLOR
-            {
-                //arbitrary number of iterations for now
-                int NumberOfIterations=9;
- 
+            { 
                 //split texel size into smaller words
                 float TX_x=_MainTex_TexelSize.x;
                 float TX_y=_MainTex_TexelSize.y;
@@ -62,25 +63,25 @@ Shader "mousedoc/Example/ScreenSpaceOutline"
                 }
  
                 //for every iteration we need to do horizontally
-                for(int k=0;k<NumberOfIterations;k+=1)
+                for(int k=0;k<_OutlineIteration;k+=1)
                 {
                     //for every iteration we need to do vertically
-                    for(int j=0;j<NumberOfIterations;j+=1)
+                    for(int j=0;j<_OutlineIteration;j+=1)
                     {
                         //increase our output color by the pixels in the area
                         ColorIntensityInRadius+=tex2D(
                                                       _MainTex,
                                                       i.uvs.xy+float2
                                                                    (
-                                                                        (k-NumberOfIterations/2)*TX_x,
-                                                                        (j-NumberOfIterations/2)*TX_y
+                                                                        (k-_OutlineIteration/2)*TX_x,
+                                                                        (j-_OutlineIteration/2)*TX_y
                                                                    )
                                                      ).r;
                     }
                 }
  
-                //output some intensity of teal
-                return ColorIntensityInRadius*half4(0,1,1,1);
+                // output some intensity of teal
+                return ColorIntensityInRadius * _OutlineColor;
             }
  
             ENDCG

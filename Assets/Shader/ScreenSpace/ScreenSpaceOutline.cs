@@ -3,12 +3,11 @@ using System.Collections;
  
 public class ScreenSpaceOutline : MonoBehaviour
 {
-    public Shader OutlineShader;
+    public Material outlineMaterial;
     public Shader WhiteShader;
 
     private Camera mainCamera;
     private Camera screenSpaceOutlineCamera;
-    private Material outlineMaterial;
 
     private RenderTexture renderTexture;
 
@@ -20,8 +19,6 @@ public class ScreenSpaceOutline : MonoBehaviour
             enabled = false;
             return;
         }
-
-        outlineMaterial = new Material(OutlineShader);
 
         screenSpaceOutlineCamera = new GameObject().AddComponent<Camera>();
         screenSpaceOutlineCamera.enabled = false;

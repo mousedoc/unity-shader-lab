@@ -804,7 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d284c218d65f24a93b3c756b56fdaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OutlineShader: {fileID: 4800000, guid: b51303bcf0ec35d4a8b52adafbb1fa68, type: 3}
+  outlineMaterial: {fileID: 2100000, guid: e5976783e5cb61d4ab1045935d6fc1f4, type: 2}
   WhiteShader: {fileID: 4800000, guid: b42f0a7f95d972243814c67d4daa7335, type: 3}
 --- !u!1 &445751477
 GameObject:
