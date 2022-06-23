@@ -1,4 +1,4 @@
-﻿Shader "mousedoc/Example/CameraBasedOutline"
+﻿Shader "mousedoc/Example/Outline"
 {
     Properties
     {
@@ -18,10 +18,10 @@
             "Queue" = "Transparent"
         }
 
-        // CameraBasedOutline
+        // Outline
         Pass
         {
-            Name "CameraBasedOutline"
+            Name "Outline"
             
             Tags 
             { 
@@ -60,13 +60,8 @@
                 output.vertex = input.vertex;                
                 output.normal = input.normal;
                 
-                // In SRP, using TransformWorldToView
-                float distanceToCamera = -UnityObjectToViewPos(input.vertex).z;
-
-                input.vertex.xyz += normalize(output.normal) * _OutlineWidth * 0.020 * distanceToCamera; // 0.020 = Magic 'feels-good' human number
-
-                // In SRP, using TransformObjectToHClip
-                output.vertex = UnityObjectToClipPos(input.vertex.xyz); 
+                input.vertex.xyz += normalize(output.normal) * _OutlineWidth;
+                output.vertex = UnityObjectToClipPos(input.vertex.xyz); // in SRP using TransformObjectToHClip(input.vertex.xyz);
                 
                 return output;
             }
