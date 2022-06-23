@@ -9,6 +9,9 @@ public class PositionVariator : MonoBehaviour
     private float range = 0.5f;
 
     [SerializeField]
+    private float timeOffset = 0f;
+
+    [SerializeField]
     private bool x = true;
 
     [SerializeField]
@@ -28,15 +31,15 @@ public class PositionVariator : MonoBehaviour
 
     private void Update()
     {
-        var time = Time.time;
+        var value = Time.time * speed + timeOffset;
         var offset = new Vector3();
 
         if (x)
-            offset.x = Mathf.Sin(time * speed) * range;
+            offset.x = Mathf.Sin(value) * range;
         if (y)
-            offset.y = Mathf.Cos(time * speed) * range;
+            offset.y = Mathf.Cos(value) * range;
         if (z)
-            offset.z = Mathf.Cos(time * speed) * range;
+            offset.z = Mathf.Cos(value) * range;
 
         transform.localPosition = originPosition + offset;
     }
