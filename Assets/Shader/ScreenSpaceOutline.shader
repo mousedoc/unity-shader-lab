@@ -1,4 +1,4 @@
-﻿Shader "mousedoc/Example/CameraBasedOutline"
+﻿Shader "mousedoc/Example/ScreenSpaceOutline"
 {
     Properties
     {
@@ -18,10 +18,10 @@
             "Queue" = "Transparent"
         }
 
-        // CameraBasedOutline
+        // ScreenSpaceOutline
         Pass
         {
-            Name "CameraBasedOutline"
+            Name "ScreenSpaceOutline"
             
             Tags 
             { 

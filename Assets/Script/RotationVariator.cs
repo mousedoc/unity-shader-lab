@@ -21,12 +21,12 @@ public class RotationVariator : MonoBehaviour
     private bool z = true;
 
     private Transform tr;
-    private Quaternion originRotation;
+    private Vector3 originRotation;
 
     private void Awake()
     {
         tr = transform;
-        originRotation = tr.localRotation;
+        originRotation = tr.localRotation.eulerAngles;
     }
 
     private void Update()
@@ -41,6 +41,6 @@ public class RotationVariator : MonoBehaviour
         if (z)
             offset.z = Mathf.Cos(time * speed) * range;
 
-        transform.localRotation = originRotation * Quaternion.Euler(offset);
+        transform.localRotation = Quaternion.Euler(originRotation + offset);
     }
 }
