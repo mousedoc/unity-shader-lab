@@ -1,4 +1,4 @@
-Shader "Custom/CameraBasedOutline"
+﻿Shader "mousedoc/Example/CameraBasedOutline"
 {
     Properties
     {
