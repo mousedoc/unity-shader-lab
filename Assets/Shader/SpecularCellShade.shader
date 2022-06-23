@@ -15,7 +15,7 @@
         {
             Name "SpecularCellShade"
 
-            Tags { "RenderType" = "Geometry" }
+            Tags { "RenderType" = "Opaque" }
 
             CGPROGRAM
 
