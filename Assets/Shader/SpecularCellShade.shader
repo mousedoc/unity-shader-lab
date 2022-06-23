@@ -11,10 +11,12 @@
 
     SubShader
     {
-        Tags { "RenderType" = "Geometry" }
-
         Pass
         {
+            Name "SpecularCellShade"
+
+            Tags { "RenderType" = "Geometry" }
+
             CGPROGRAM
 
             #include "UnityCG.cginc"
