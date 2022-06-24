@@ -15,8 +15,8 @@
     {
         Tags
         { 
-            "RenderType"="Opaque" 
-            "Queue"="Geometry" 
+            "RenderType" = "Opaque" 
+            "Queue" = "Transparent" 
         }
 
         // Draw, itself
@@ -28,11 +28,6 @@
         {
             Name "CameraBasedOutline"
             
-            Tags 
-            { 
-                "RenderType" = "Opaque" 
-            }
-
             ZWrite Off
             Cull front
             Blend SrcAlpha OneMinusSrcAlpha

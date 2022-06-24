@@ -15,8 +15,8 @@
     {
         Tags
         { 
-            "RenderType"="Opaque" 
-            "Queue"="Geometry" 
+            "RenderType" = "Opaque" 
+            "Queue" = "Transparent" 
         }
 
         // Outline
