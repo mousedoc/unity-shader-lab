@@ -11,7 +11,6 @@
     {
         Blend SrcAlpha OneMinusSrcAlpha
         
-        // Horizontal
         Pass
         {
             CGPROGRAM
@@ -62,7 +61,7 @@
                  // and a final intensity that increments based on surrounding intensities.
                 float ColorIntensityInRadius;
 
-                // for every iteration we need to do horizontally
+                // Horizontal 
                 for (int k = 0; k < _OutlineIteration; k++)
                 {
                     //increase our output color by the pixels in the area
@@ -73,64 +72,16 @@
                                                         0 //(j - _OutlineIteration / 2) * TX_y
                                                     )).r;
                 }
- 
-                // output some intensity of teal
-                return ColorIntensityInRadius * _OutlineColor;
-            }
- 
-            ENDCG
- 
-        }
 
-        // Vertical - In SRP, multi pass not works
-        Pass
-        {
-            CGPROGRAM
-  
-            #pragma vertex vert
-            #pragma fragment frag
-
-            #include "UnityCG.cginc"
-
-            sampler2D _MainTex;
-             float2 _MainTex_TexelSize;
-
-            float4 _OutlineColor;
-            int _OutlineIteration;
- 
-            struct v2f
-            {
-                float4 pos : SV_POSITION;
-                float2 uvs : TEXCOORD0;
-            };
- 
-            v2f vert (appdata_base v)
-            {
-                v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.uvs = o.pos.xy / 2 + 0.5;
- 
-                return o;
-            }
- 
-            half4 frag(v2f i) : COLOR
-            { 
-                if (tex2D(_MainTex, i.uvs.xy).r > 0)
-                    discard;
-
-                float TX_x = _MainTex_TexelSize.x;
-                float TX_y = _MainTex_TexelSize.y;
-                float ColorIntensityInRadius;
-
-                //for every iteration we need to do vertically
-                for (int j = 0; j < _OutlineIteration; j++)
+                // Vertical
+                for (int k = 0; k < _OutlineIteration; k++)
                 {
                     //increase our output color by the pixels in the area
                     ColorIntensityInRadius += tex2D(_MainTex,
                                                     i.uvs.xy + float2
                                                     (
-                                                        0,
-                                                        (j - _OutlineIteration / 2) * TX_y
+                                                        0, 
+                                                        (k - _OutlineIteration / 2) * TX_y
                                                     )).r;
                 }
  
@@ -139,6 +90,7 @@
             }
  
             ENDCG
+ 
         }
     }
 }
