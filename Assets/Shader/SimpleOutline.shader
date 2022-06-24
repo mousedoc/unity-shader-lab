@@ -1,4 +1,4 @@
-﻿Shader "mousedoc/Example/CameraBasedOutline"
+﻿Shader "mousedoc/Example/Outline"
 {
     Properties
     {
@@ -19,14 +19,10 @@
             "Queue"="Geometry" 
         }
 
-        // Draw, itself
-        UsePass "mousedoc/Example/SpecularCellShade/SpecularCellShade"
-
-        // CameraBasedOutline, 
-        // In SRP, multi pass not works
+        // Outline
         Pass
         {
-            Name "CameraBasedOutline"
+            Name "Outline"
             
             Tags 
             { 
@@ -34,7 +30,7 @@
             }
 
             ZWrite Off
-            Cull front
+
             Blend SrcAlpha OneMinusSrcAlpha
             
             CGPROGRAM
@@ -66,14 +62,8 @@
                 output.vertex = input.vertex;                
                 output.normal = input.normal;
                 
-                // In SRP, using TransformWorldToView
-                float depth = -UnityObjectToViewPos(input.vertex).z;
-                float depthMultiplier = 1 + (depth - 1) * 0.5f;
-
-                input.vertex.xyz += normalize(output.normal) * _OutlineWidth * depthMultiplier; // 0.020 = Magic 'feels-good' human number
-
-                // In SRP, using TransformObjectToHClip
-                output.vertex = UnityObjectToClipPos(input.vertex.xyz); 
+                input.vertex.xyz += normalize(output.normal) * _OutlineWidth;
+                output.vertex = UnityObjectToClipPos(input.vertex.xyz); // in SRP using TransformObjectToHClip(input.vertex.xyz);
                 
                 return output;
             }
@@ -85,5 +75,8 @@
 
             ENDCG
         }
+
+        // In SRP, multi pass not works
+        UsePass "mousedoc/Example/SpecularCellShade/SpecularCellShade"
     }
 }

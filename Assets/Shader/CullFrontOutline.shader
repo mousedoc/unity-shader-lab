@@ -1,4 +1,4 @@
-﻿Shader "mousedoc/Example/Outline"
+﻿Shader "mousedoc/Example/CullFrontOutline"
 {
     Properties
     {
@@ -13,12 +13,16 @@
 
     SubShader
     {
-        Tags 
+        Tags
         { 
-            "Queue" = "Transparent"
+            "RenderType"="Opaque" 
+            "Queue"="Geometry" 
         }
 
-        // Outline
+        // First, draw itself
+        UsePass "mousedoc/Example/SpecularCellShade/SpecularCellShade"
+
+        // Outline with cull front, In SRP, multi pass not works
         Pass
         {
             Name "Outline"
@@ -29,6 +33,8 @@
             }
 
             ZWrite Off
+            Cull front
+
             Blend SrcAlpha OneMinusSrcAlpha
             
             CGPROGRAM
@@ -73,8 +79,5 @@
 
             ENDCG
         }
-
-        // In SRP, multi pass not works
-        UsePass "mousedoc/Example/SpecularCellShade/SpecularCellShade"
     }
 }
