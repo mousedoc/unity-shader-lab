@@ -1,5 +1,5 @@
 # unity-shader-lab
-Unity built-in shader(Shaderlab) example with legacy render pipeline
+Unity built-in shader example with Legacy render pipeline
 
 ## Requirements
 Using Unity 2020.3.29f1
