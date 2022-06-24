@@ -80,6 +80,7 @@
             ENDCG
         }
 
+        // In SRP, multi pass not works
         UsePass "mousedoc/Example/SpecularCellShade/SpecularCellShade"
     }
 }

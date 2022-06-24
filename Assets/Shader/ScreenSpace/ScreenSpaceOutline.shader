@@ -82,7 +82,7 @@
  
         }
 
-        // Vertical
+        // Vertical - In SRP, multi pass not works
         Pass
         {
             CGPROGRAM
