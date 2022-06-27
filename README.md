@@ -4,8 +4,8 @@ Unity shader example with Legacy render pipeline
 ## Preview
 ![](ReadmeAssets/preview-01.png)
 
-## Requirements
-Using Unity 2020.3.29f1
+## Using
+Unity 2020.3.29f1
 
 ## WIP
 - DisapearingCow
