@@ -26,7 +26,7 @@
             float2 _MainTex_TexelSize;
 
             float4 _OutlineColor;
-            int _OutlineIteration;
+            uint _OutlineIteration;
  
             struct v2f
             {
@@ -62,7 +62,9 @@
                 float ColorIntensityInRadius;
 
                 // Horizontal 
-                for (int k = 0; k < _OutlineIteration; k++)
+                int k;
+                int iterCount = (int)_OutlineIteration;
+                for (k = 0; k < iterCount; k++)
                 {
                     //increase our output color by the pixels in the area
                     ColorIntensityInRadius += tex2D(_MainTex,
@@ -74,7 +76,7 @@
                 }
 
                 // Vertical
-                for (int k = 0; k < _OutlineIteration; k++)
+                for (k = 0; k < iterCount; k++)
                 {
                     //increase our output color by the pixels in the area
                     ColorIntensityInRadius += tex2D(_MainTex,
