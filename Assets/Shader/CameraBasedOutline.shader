@@ -28,7 +28,7 @@
         {
             Name "CameraBasedOutline"
             
-            //ZWrite Off
+            ZWrite Off
             Cull front
             Blend SrcAlpha OneMinusSrcAlpha
             
