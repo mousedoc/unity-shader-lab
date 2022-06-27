@@ -32,7 +32,7 @@
                 "RenderType" = "Opaque" 
             }
 
-            ZWrite Off
+            //ZWrite Off
             Cull front
 
             Blend SrcAlpha OneMinusSrcAlpha

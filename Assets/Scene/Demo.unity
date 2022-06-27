@@ -1748,7 +1748,7 @@ Transform:
   - {fileID: 471910620}
   - {fileID: 124677107}
   m_Father: {fileID: 1484618732}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &818335581
 GameObject:
@@ -3196,8 +3196,8 @@ Transform:
   - {fileID: 65457583}
   - {fileID: 1961271514}
   - {fileID: 1721773011}
-  - {fileID: 1811569111}
   - {fileID: 732601685}
+  - {fileID: 1811569111}
   - {fileID: 1048849514}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -4318,7 +4318,7 @@ Transform:
   - {fileID: 1928556886}
   - {fileID: 947453672}
   m_Father: {fileID: 1484618732}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1848990243
 GameObject:
