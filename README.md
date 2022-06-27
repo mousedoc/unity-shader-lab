@@ -8,7 +8,6 @@ Unity shader example with Legacy render pipeline
 Using Unity 2020.3.29f1
 
 ## WIP
-- ScrollingTextureCutout
 - DisapearingCow
 - TwoToneDissolve
 - VertexDisplacement
