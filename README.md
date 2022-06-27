@@ -15,5 +15,8 @@ Using Unity 2020.3.29f1
 - TwoToneDissolve
 - VertexDisplacement
 
+// ScreenSpace
+- EdgeDetection
+
 ## References
 - [Adrian Miasik/unity-shaders](https://github.com/adrian-miasik/unity-shaders)  
