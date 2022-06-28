@@ -8,11 +8,8 @@ Unity shader example with Legacy render pipeline
 Unity 2020.3.29f1
 
 ## WIP
-- DisapearingCow
-- TwoToneDissolve
 - VertexDisplacement
-
-- EdgeDetection       // ScreenSpace
+- EdgeDetection         // ScreenSpace
 
 
 ## References
