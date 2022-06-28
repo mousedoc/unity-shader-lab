@@ -3,7 +3,6 @@
     Properties
     {
         _Resolution("Resolution", float) = -30
-        _Threshold("Threshold", float) = 0.4
 
         _FirstProgress("FirstProgress", Range(-1, 1)) = 0.5
         _SecondProgress("SecondProgress", Range(-1, 1)) = 0.4
@@ -38,8 +37,6 @@
             };
 
             float _Resolution; 
-            float _Threshold;
-
             float _FirstProgress;
             float _SecondProgress;
 
@@ -118,27 +115,25 @@
                 float2 left = float2(-1, 1);
                 float2 right = float2(0, 1);
 
-                float fProgress = Remap(_FirstProgress, left, right);
-                float sProgress = Remap(_SecondProgress, left, right);
-                
+                // Noise
                 float alpha = Unity_SimpleNoise_float(i.uv, _Resolution);
 
+                // First
+                float firstProgress = Remap(_FirstProgress, left, right);
+                float4 firstColor = _FirstColor;
+                firstColor.a = step(alpha - firstProgress, 0);
 
-                float3 skin = step(alpha, _Threshold);
-                // return float4(skin, 1);
-                // float spliter = skin.x
-                // skin *= _FirstColor;
+                // Second
+                float secondProgress = Remap(_SecondProgress, left, right);
+                float4 secondColor = _SecondColor;
+                secondColor.a = step(alpha - secondProgress, 0);
 
+                // Selection by secondColor's alpha
+                float spliter = step(secondColor.a, 0);
+                firstColor *= spliter;
+                secondColor *= abs(spliter - 1);
 
-                // Alpha clip
-                float fClip = step(0, alpha - fProgress);
-                float sClip = step(0, alpha - sProgress);
-                float isClip = fClip + sClip;
-                clip(isClip);
-
-                
-                return float4(skin, 1);
-
+                return firstColor + secondColor;
             }
 
             ENDCG

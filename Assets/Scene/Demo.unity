@@ -314,6 +314,8 @@ GameObject:
   - component: {fileID: 94915776}
   - component: {fileID: 94915775}
   - component: {fileID: 94915774}
+  - component: {fileID: 94915779}
+  - component: {fileID: 94915778}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -415,6 +417,42 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94915772}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &94915778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94915772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07428acbbf9da3841bcf1a4aa2500afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMaterial: {fileID: 2100000, guid: ede9457a1d3ca4a41bbd405e2df84e8f, type: 2}
+  propertyName: _SecondProgress
+  timeOffset: 3
+  minimum: -1
+  maximum: 1
+  speed: 1
+--- !u!114 &94915779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94915772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07428acbbf9da3841bcf1a4aa2500afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMaterial: {fileID: 2100000, guid: ede9457a1d3ca4a41bbd405e2df84e8f, type: 2}
+  propertyName: _FirstProgress
+  timeOffset: 0
+  minimum: -1
+  maximum: 1
+  speed: 1
 --- !u!1 &124677106
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 0.5
   timeOffset: 0
@@ -951,6 +988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: 29eec70af91205947ac2a91be1481e74, type: 2}
   propertyName: _Offset
+  timeOffset: 0
   minimum: 0
   maximum: 1
   speed: 1
@@ -1083,6 +1121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: 34c9e9b2eb3304257bbe583ffeb18b3e, type: 2}
   propertyName: _LightStepFalloff
+  timeOffset: 0
   minimum: 0.2
   maximum: 0.4
   speed: 1
@@ -1681,7 +1720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 30
   timeOffset: 0
@@ -2227,7 +2265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 0.5
   timeOffset: 0
@@ -2299,7 +2336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 30
   timeOffset: 1
@@ -2433,7 +2469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 30
   timeOffset: 2
@@ -2940,7 +2975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 30
   timeOffset: 0
@@ -3075,7 +3109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 0.5
   timeOffset: 0
@@ -3176,6 +3209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: 2d08a0706482fc74292145a2170fe537, type: 2}
   propertyName: _Band
+  timeOffset: 0
   minimum: 1
   maximum: 20
   speed: 1
@@ -3767,7 +3801,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 30
   timeOffset: 0
@@ -5011,6 +5044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: 96dc0fa53eef72c46929c7382ae67cfa, type: 2}
   propertyName: _Gloss
+  timeOffset: 0
   minimum: 1
   maximum: 10
   speed: 1
@@ -5271,6 +5305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: d178518725046974c897e5f05908bedf, type: 2}
   propertyName: _Progress
+  timeOffset: 0
   minimum: -1
   maximum: 1
   speed: 1
@@ -5401,7 +5436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 30
   timeOffset: 0
@@ -5644,7 +5678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c09a2476160b8e478f3f0f137a28d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  byLocal: 1
   speed: 2
   range: 0.5
   timeOffset: 0

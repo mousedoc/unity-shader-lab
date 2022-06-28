@@ -9,6 +9,9 @@ public class MaterialFloatVariator : MonoBehaviour
     private string propertyName = null;
 
     [SerializeField]
+    private float timeOffset = 0f;
+
+    [SerializeField]
     private float minimum = -1f;
 
     [SerializeField]
@@ -28,8 +31,8 @@ public class MaterialFloatVariator : MonoBehaviour
         if (targetMaterial == null || string.IsNullOrEmpty(propertyName))
             return;
 
-        var time = Time.time;
-        var offset = (Mathf.Sin(time * speed) + 1) / 2f;
+        var time = Time.time * speed + timeOffset;
+        var offset = (Mathf.Sin(time) + 1) / 2f;
         var value = Mathf.Lerp(minimum, maximum, offset);
         targetMaterial.SetFloat(propertyName, value);
     }
