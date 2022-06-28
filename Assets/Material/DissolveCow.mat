@@ -68,7 +68,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineIteration: 8
     - _Parallax: 0.02
-    - _Progress: 0.9670079
+    - _Progress: -0.501
     - _Resolution: -50
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

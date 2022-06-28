@@ -61,7 +61,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeOffset: 0.168
-    - _FirstProgress: 0.9670079
+    - _FirstProgress: -0.155
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -71,7 +71,7 @@ Material:
     - _Parallax: 0.02
     - _Progress: -1
     - _Resolution: -50
-    - _SecondProgress: -0.99328035
+    - _SecondProgress: -0.341
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

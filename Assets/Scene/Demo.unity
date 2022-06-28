@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07428acbbf9da3841bcf1a4aa2500afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMaterial: {fileID: 2100000, guid: ede9457a1d3ca4a41bbd405e2df84e8f, type: 2}
+  targetRenderer: {fileID: 94915776}
   propertyName: _SecondProgress
   timeOffset: 3
   minimum: -1
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07428acbbf9da3841bcf1a4aa2500afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMaterial: {fileID: 2100000, guid: ede9457a1d3ca4a41bbd405e2df84e8f, type: 2}
+  targetRenderer: {fileID: 94915776}
   propertyName: _FirstProgress
   timeOffset: 0
   minimum: -1
@@ -986,7 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07428acbbf9da3841bcf1a4aa2500afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMaterial: {fileID: 2100000, guid: 29eec70af91205947ac2a91be1481e74, type: 2}
+  targetRenderer: {fileID: 356171243}
   propertyName: _Offset
   timeOffset: 0
   minimum: 0
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07428acbbf9da3841bcf1a4aa2500afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMaterial: {fileID: 2100000, guid: 34c9e9b2eb3304257bbe583ffeb18b3e, type: 2}
+  targetRenderer: {fileID: 373907269}
   propertyName: _LightStepFalloff
   timeOffset: 0
   minimum: 0.2
@@ -3207,7 +3207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07428acbbf9da3841bcf1a4aa2500afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMaterial: {fileID: 2100000, guid: 2d08a0706482fc74292145a2170fe537, type: 2}
+  targetRenderer: {fileID: 1172067981}
   propertyName: _Band
   timeOffset: 0
   minimum: 1
@@ -5042,7 +5042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07428acbbf9da3841bcf1a4aa2500afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMaterial: {fileID: 2100000, guid: 96dc0fa53eef72c46929c7382ae67cfa, type: 2}
+  targetRenderer: {fileID: 1800923746}
   propertyName: _Gloss
   timeOffset: 0
   minimum: 1
@@ -5303,7 +5303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07428acbbf9da3841bcf1a4aa2500afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMaterial: {fileID: 2100000, guid: d178518725046974c897e5f05908bedf, type: 2}
+  targetRenderer: {fileID: 1878249150}
   propertyName: _Progress
   timeOffset: 0
   minimum: -1

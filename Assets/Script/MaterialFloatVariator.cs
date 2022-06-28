@@ -3,7 +3,7 @@
 public class MaterialFloatVariator : MonoBehaviour
 {
     [SerializeField]
-    private Material targetMaterial = null;
+    private Renderer targetRenderer = null;
 
     [SerializeField]
     private string propertyName = null;
@@ -22,18 +22,18 @@ public class MaterialFloatVariator : MonoBehaviour
 
     private void Awake()
     {
-        if (targetMaterial == null)
-            targetMaterial = GetComponent<Material>();
+        if (targetRenderer == null)
+            targetRenderer = GetComponent<Renderer>();
     }
 
     private void Update()
     {
-        if (targetMaterial == null || string.IsNullOrEmpty(propertyName))
+        if (targetRenderer == null || string.IsNullOrEmpty(propertyName))
             return;
 
         var time = Time.time * speed + timeOffset;
         var offset = (Mathf.Sin(time) + 1) / 2f;
         var value = Mathf.Lerp(minimum, maximum, offset);
-        targetMaterial.SetFloat(propertyName, value);
+        targetRenderer.material.SetFloat(propertyName, value);
     }
 }
