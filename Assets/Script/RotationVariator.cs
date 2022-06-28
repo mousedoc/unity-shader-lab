@@ -3,9 +3,6 @@
 public class RotationVariator : MonoBehaviour
 {
     [SerializeField]
-    private bool byLocal = true;
-
-    [SerializeField]
     private float speed = 2f;
 
     [SerializeField]

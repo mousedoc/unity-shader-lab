@@ -65,7 +65,7 @@ Material:
     - _GlossStepFalloff: 0.247
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LightStepFalloff: 0.2748228
+    - _LightStepFalloff: 0.2673751
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1

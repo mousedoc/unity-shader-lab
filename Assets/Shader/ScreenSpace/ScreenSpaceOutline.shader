@@ -8,11 +8,11 @@
     }
 
     SubShader
-    {
-        Blend SrcAlpha OneMinusSrcAlpha
-        
+    {    
         Pass
         {
+            Blend SrcAlpha OneMinusSrcAlpha
+
             CGPROGRAM
   
             #pragma vertex vert

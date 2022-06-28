@@ -68,9 +68,12 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Progress: -1
+    - _Resolution: -30
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Threshold: 0.4
     - _UVSec: 0
     - _VerticalSpeed: 0.5
     - _ZWrite: 1
