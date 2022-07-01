@@ -4,7 +4,6 @@ using UnityEngine;
 public class MeshVariator : MonoBehaviour
 {
     private static Dictionary<PrimitiveType, Mesh> meshMap = new Dictionary<PrimitiveType, Mesh>();
-    private static Vector3 newLocalScale = new Vector3(0.5f, 0.5f, 0.5f);
 
     private static Mesh GetMesh(PrimitiveType type)
     {
@@ -25,6 +24,21 @@ public class MeshVariator : MonoBehaviour
     public void Change(PrimitiveType type)
     {
         meshFilter.mesh = GetMesh(type);
-        transform.localScale = newLocalScale;
+
+        float scale = 0.5f;
+        switch (type)
+        {
+            case PrimitiveType.Cube:
+                scale = 0.9f;
+                break;
+            case PrimitiveType.Capsule:
+                scale = 0.3f;
+                break;
+            default:
+                scale = 0.5f;
+                break;
+        }
+
+        transform.localScale = Vector3.one * scale;
     }
 }
