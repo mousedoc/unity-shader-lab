@@ -31,9 +31,15 @@ public class MeshVariator : MonoBehaviour
             case PrimitiveType.Cube:
                 scale = 0.9f;
                 break;
+
             case PrimitiveType.Capsule:
                 scale = 0.3f;
                 break;
+
+            case PrimitiveType.Quad:
+                scale = 1f;
+                break;
+
             default:
                 scale = 0.5f;
                 break;
