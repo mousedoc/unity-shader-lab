@@ -55,7 +55,6 @@
                 float uvY = i.uv.y + (_Time * _VerticalSpeed * 10);
 
                 return tex2D(_MainTex, float2(uvX, uvY));
-                //return _MainTex.Sample(sampler_linear_repeat, float2(uvX, uvY));
             }
 
             ENDCG
