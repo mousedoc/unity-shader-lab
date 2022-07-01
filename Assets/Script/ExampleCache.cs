@@ -5,7 +5,7 @@ public class ExampleCache : MonoBehaviour
 {
     public static List<GameObject> Examples { get; private set; } = new List<GameObject>();
 
-    private readonly string exampleTag = "ShaderExample";
+    public const string ExampleTag = "ShaderExample";
 
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class ExampleCache : MonoBehaviour
             if (meshChild == null)
                 continue;
 
-            if (meshChild.CompareTag(exampleTag) == false)
+            if (meshChild.CompareTag(ExampleTag) == false)
                 continue;
 
             Examples.Add(meshChild.gameObject);

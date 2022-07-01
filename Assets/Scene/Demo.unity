@@ -1512,6 +1512,7 @@ GameObject:
   - component: {fileID: 402136745}
   - component: {fileID: 402136744}
   - component: {fileID: 402136747}
+  - component: {fileID: 402136748}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -1598,6 +1599,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: e5976783e5cb61d4ab1045935d6fc1f4, type: 2}
   WhiteShader: {fileID: 4800000, guid: b42f0a7f95d972243814c67d4daa7335, type: 3}
+--- !u!114 &402136748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402136743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c540da54eb19e34e815e0de4d0bc5c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookSpeed: 0.01
+  lookDistance: 5
+  moveLerpSpeed: 3
+  rotateSlerpSpeed: 33333
+  orbit: {x: 1, y: 1, z: 1}
 --- !u!1 &414825693
 GameObject:
   m_ObjectHideFlags: 0
