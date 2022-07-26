@@ -73,9 +73,8 @@
                                                         0 //(j - _OutlineIteration / 2) * TX_y
                                                     )).r;
                 }
-
                 // Vertical
-                for (k = 5; k < _OutlineIteration; k++)
+                for (k = 0; k < _OutlineIteration; k++)
                 {
                     //increase our output color by the pixels in the area
                     ColorIntensityInRadius += tex2D(_MainTex,
