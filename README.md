@@ -9,6 +9,8 @@ Unity 2020.3.29f1
 
 ## WIP
 - EdgeDetection         // ScreenSpace
+- JumpFloodOutline      // ScreenSpace
+- GreyScale             // ScreenSpace
 
 
 ## References
