@@ -1,5 +1,5 @@
 # unity-shader-lab
-Unity shader example with Legacy render pipeline
+Unity legacy render pipeline playground
 
 ## Preview
 ![](ReadmeAssets/preview-01.png)
